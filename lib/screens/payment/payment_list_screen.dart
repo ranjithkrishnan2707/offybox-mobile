@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../models/payment.dart';
 import '../../services/payment_service.dart';
+import 'payment_form_screen.dart';
 
 class PaymentListScreen extends StatefulWidget {
   const PaymentListScreen({super.key});
@@ -81,10 +82,14 @@ class _PaymentListScreenState extends State<PaymentListScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Add Payment feature coming soon!')),
+        onPressed: () async {
+          final result = await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const PaymentFormScreen()),
           );
+          if (result == true) {
+            _loadPayments();
+          }
         },
         backgroundColor: const Color(0xFF7C3AED),
         icon: const Icon(Icons.add, color: Colors.white),

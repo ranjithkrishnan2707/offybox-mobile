@@ -37,4 +37,8 @@ class PaymentService {
 
     return result;
   }
+
+  static Future<Map<String, dynamic>> createPayment(Map<String, dynamic> data) async {
+    return await ApiService.post(ApiService.ENDPOINT_PAYMENTS, data);
+  }
 }

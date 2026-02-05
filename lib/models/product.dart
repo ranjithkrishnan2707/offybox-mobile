@@ -11,6 +11,8 @@ class Product {
   final String stock;
   final String status;
   final String? taxRate;
+  final String? barcode;
+  final String? description;
 
   Product({
     required this.id,
@@ -25,6 +27,8 @@ class Product {
     required this.stock,
     required this.status,
     this.taxRate,
+    this.barcode,
+    this.description,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
@@ -54,6 +58,8 @@ class Product {
       stock: json['stock']?.toString() ?? '0',
       status: json['status']?.toString() ?? 'ACTIVE',
       taxRate: json['tax_rate']?.toString() ?? json['tax_rate_percent']?.toString() ?? '0',
+      barcode: json['barcode']?.toString(),
+      description: json['description']?.toString(),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../models/invoice.dart';
 import '../../services/invoice_service.dart';
+import 'invoice_form_screen.dart';
 
 class InvoiceListScreen extends StatefulWidget {
   const InvoiceListScreen({super.key});
@@ -79,10 +80,14 @@ class _InvoiceListScreenState extends State<InvoiceListScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Add Invoice feature coming soon!')),
+        onPressed: () async {
+          final result = await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const InvoiceFormScreen()),
           );
+          if (result == true) {
+            _loadInvoices();
+          }
         },
         backgroundColor: const Color(0xFF7C3AED),
         icon: const Icon(Icons.add, color: Colors.white),

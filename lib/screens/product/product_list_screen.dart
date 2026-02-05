@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../models/product.dart';
 import '../../services/product_service.dart';
+import 'product_form_screen.dart';
 
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});
@@ -78,8 +79,14 @@ class _ProductListScreenState extends State<ProductListScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          // Navigate to Add Product screen
+        onPressed: () async {
+          final result = await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ProductFormScreen()),
+          );
+          if (result == true) {
+            _loadProducts();
+          }
         },
         backgroundColor: const Color(0xFF7C3AED),
         icon: const Icon(Icons.add, color: Colors.white),

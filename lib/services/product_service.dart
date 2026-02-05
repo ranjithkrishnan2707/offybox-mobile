@@ -1,5 +1,6 @@
 import 'api_service.dart';
 import '../models/product.dart';
+import '../models/outlet.dart'; // For LookupItem
 
 class ProductService {
   static Future<Map<String, dynamic>> getProducts({
@@ -58,4 +59,41 @@ class ProductService {
 
     return result;
   }
+
+  static Future<Map<String, dynamic>> createProduct(Map<String, dynamic> data) async {
+    return await ApiService.post(ApiService.ENDPOINT_PRODUCTS, data);
+  }
+
+  static Future<Map<String, dynamic>> _fetchLookup(String endpoint, {bool paginated = true}) async {
+    final queryParams = paginated ? {'page': '1', 'limit': '1000'} : <String, String>{};
+    final result = await ApiService.get(endpoint, queryParams: queryParams);
+    
+    if (result['success']) {
+      final body = result['data'];
+      final List dataList;
+      if (body is List) {
+        dataList = body;
+      } else if (body is Map && body.containsKey('data')) {
+        final data = body['data'];
+        if (data is List) {
+          dataList = data;
+        } else if (data is Map && data.containsKey('data') && data['data'] is List) {
+          dataList = data['data'];
+        } else {
+          dataList = [];
+        }
+      } else {
+        dataList = [];
+      }
+      
+      final items = dataList.map((e) => LookupItem.fromJson(e)).toList();
+      return {'success': true, 'data': items};
+    }
+    return result;
+  }
+
+  static Future<Map<String, dynamic>> getCategories() => _fetchLookup(ApiService.ENDPOINT_CATEGORIES);
+  static Future<Map<String, dynamic>> getBrands() => _fetchLookup(ApiService.ENDPOINT_BRANDS);
+  static Future<Map<String, dynamic>> getUnits() => _fetchLookup(ApiService.ENDPOINT_UNITS);
+  static Future<Map<String, dynamic>> getTaxes() => _fetchLookup(ApiService.ENDPOINT_TAXES, paginated: false);
 }

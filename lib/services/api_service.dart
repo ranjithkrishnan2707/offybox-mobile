@@ -13,6 +13,10 @@ class ApiService {
   static const String ENDPOINT_PAYMENTS = '/v1/payments';
   static const String ENDPOINT_PRODUCTS = '/v1/products';
   static const String ENDPOINT_USERS = '/v1/users';
+  static const String ENDPOINT_CATEGORIES = '/v1/categories';
+  static const String ENDPOINT_BRANDS = '/v1/brands';
+  static const String ENDPOINT_UNITS = '/v1/units';
+  static const String ENDPOINT_TAXES = '/v1/taxes';
 
   static Future<Map<String, String>> _getHeaders() async {
     final token = await StorageService.getToken();
