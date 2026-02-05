@@ -3,6 +3,7 @@ import 'screens/splash/splash_screen.dart';
 import 'screens/login/login_screen.dart';
 import 'screens/dashboard/dashboard_screen.dart';
 import 'screens/home/home_screen.dart';
+<<<<<<< HEAD
 import 'screens/ledger/ledger_list_screen.dart';
 import 'screens/ledger/ledger_form_screen.dart';
 import 'screens/order/order_list_screen.dart';
@@ -13,6 +14,8 @@ import 'screens/invoice/invoice_list_screen.dart';
 import 'screens/payment/payment_list_screen.dart';
 import 'screens/quotation/quotation_form_screen.dart';
 import 'screens/quotation/quotation_list_screen.dart';
+=======
+>>>>>>> source/main
 
 void main() {
   runApp(const OffyboxApp());
@@ -39,6 +42,7 @@ class OffyboxApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/dashboard': (context) => const DashboardScreen(),
         '/home': (context) => const HomeScreen(),
+<<<<<<< HEAD
         '/ledgers': (context) => const LedgerListScreen(),
         '/ledgers/add': (context) => const LedgerFormScreen(),
         '/orders': (context) => const OrderListScreen(),
@@ -52,6 +56,8 @@ class OffyboxApp extends StatelessWidget {
         '/payments': (context) => const PaymentListScreen(),
         '/quotations': (context) => const QuotationListScreen(),
         '/quotations/add': (context) => const QuotationFormScreen(),
+=======
+>>>>>>> source/main
       },
     );
   }

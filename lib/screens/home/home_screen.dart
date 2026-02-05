@@ -6,6 +6,12 @@ import '../../services/outlet_service.dart';
 import '../../services/storage_service.dart';
 import '../../services/auth_service.dart';
 import '../outlet/outlet_detail_screen.dart';
+<<<<<<< HEAD
+=======
+import '../../widgets/app_sidebar.dart';
+import '../../constants/app_colors.dart';
+
+>>>>>>> source/main
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -155,6 +161,10 @@ class _HomeScreenState extends State<HomeScreen> {
           'Outlets',
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
+<<<<<<< HEAD
+=======
+
+>>>>>>> source/main
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -162,7 +172,27 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+<<<<<<< HEAD
       drawer: _buildDrawer(),
+=======
+      drawer: AppSidebar(
+        activeItem: 'Users', // Marking as Users for now as it represents the current context best
+        userName: _userName,
+        userEmail: _userEmail,
+        tenantName: _tenantName,
+        onItemTap: (id) {
+          Navigator.pop(context);
+          if (id == 'Dashboard') {
+            Navigator.pushReplacementNamed(context, '/dashboard');
+          }
+          // Add other navigation logic as screens are implemented
+        },
+        onLogout: () {
+          Navigator.pop(context);
+          _handleLogout();
+        },
+      ),
+>>>>>>> source/main
       body: Column(
         children: [
           // Search bar
@@ -212,6 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+<<<<<<< HEAD
   Widget _buildDrawer() {
     return Drawer(
       child: Column(
@@ -387,6 +418,9 @@ class _HomeScreenState extends State<HomeScreen> {
       onTap: onTap,
     );
   }
+=======
+
+>>>>>>> source/main
 
   Widget _buildContent() {
     if (_isLoading) {

@@ -6,6 +6,7 @@ class OrderService {
     int page = 1,
     int limit = 20,
     String orderType = 'QUOTATION',
+<<<<<<< HEAD
     String? search,
     String? orderStatus,
   }) async {
@@ -26,6 +27,11 @@ class OrderService {
     final response = await ApiService.get(
       ApiService.ENDPOINT_ORDERS,
       queryParams: queryParams,
+=======
+  }) async {
+    final response = await ApiService.get(
+      '/orders?page=$page&limit=$limit&order_type=$orderType',
+>>>>>>> source/main
     );
 
     if (response['success'] == true && response['data'] != null) {
@@ -36,7 +42,11 @@ class OrderService {
   }
 
   static Future<Order?> getOrderById(String id) async {
+<<<<<<< HEAD
     final response = await ApiService.get('${ApiService.ENDPOINT_ORDERS}/$id');
+=======
+    final response = await ApiService.get('/orders/$id');
+>>>>>>> source/main
 
     print('OrderService.getOrderById response: $response');
 

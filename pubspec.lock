@@ -89,6 +89,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.8"
+<<<<<<< HEAD
   dbus:
     dependency: transitive
     description:
@@ -97,6 +98,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.11"
+=======
+>>>>>>> source/main
   fake_async:
     dependency: transitive
     description:
@@ -121,6 +124,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.1"
+<<<<<<< HEAD
   fixnum:
     dependency: transitive
     description:
@@ -129,6 +133,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+=======
+>>>>>>> source/main
   flutter:
     dependency: "direct main"
     description: flutter
@@ -160,6 +166,7 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+<<<<<<< HEAD
   geoclue:
     dependency: transitive
     description:
@@ -232,6 +239,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.8"
+=======
+>>>>>>> source/main
   http:
     dependency: "direct main"
     description:
@@ -256,6 +265,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.7.2"
+<<<<<<< HEAD
   intl:
     dependency: "direct main"
     description:
@@ -264,6 +274,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.19.0"
+=======
+>>>>>>> source/main
   json_annotation:
     dependency: transitive
     description:
@@ -328,6 +340,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.0"
+<<<<<<< HEAD
   package_info_plus:
     dependency: transitive
     description:
@@ -344,6 +357,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
+=======
+>>>>>>> source/main
   path:
     dependency: transitive
     description:
@@ -589,6 +604,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.5"
+<<<<<<< HEAD
   uuid:
     dependency: transitive
     description:
@@ -597,6 +613,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.5.2"
+=======
+>>>>>>> source/main
   vector_math:
     dependency: transitive
     description:
@@ -621,6 +639,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+<<<<<<< HEAD
   win32:
     dependency: transitive
     description:
@@ -629,6 +648,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.15.0"
+=======
+>>>>>>> source/main
   xdg_directories:
     dependency: transitive
     description:

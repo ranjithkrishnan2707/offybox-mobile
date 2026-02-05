@@ -4,6 +4,12 @@ import '../../services/storage_service.dart';
 import '../../services/auth_service.dart';
 import '../home/home_screen.dart';
 import '../quotation/quotation_list_screen.dart';
+<<<<<<< HEAD
+=======
+import '../../widgets/app_sidebar.dart';
+import '../../constants/app_colors.dart';
+
+>>>>>>> source/main
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -83,7 +89,35 @@ class _DashboardScreenState extends State<DashboardScreen> {
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
+<<<<<<< HEAD
       drawer: _buildDrawer(),
+=======
+      drawer: AppSidebar(
+        activeItem: 'Dashboard',
+        userName: _userName,
+        userEmail: _userEmail,
+        tenantName: _tenantName,
+        onItemTap: (id) {
+          Navigator.pop(context);
+          if (id == 'Users') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
+            );
+          } else if (id == 'Quotation') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const QuotationListScreen()),
+            );
+          }
+          // Add other navigation logic as screens are implemented
+        },
+        onLogout: () {
+          Navigator.pop(context);
+          _handleLogout();
+        },
+      ),
+>>>>>>> source/main
       body: RefreshIndicator(
         onRefresh: () async {
           _loadUserInfo();
@@ -133,9 +167,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
               iconBgColor: const Color(0xFFDBEAFE),
               label: 'Ledger',
               value: '17',
+<<<<<<< HEAD
               onTap: () {
                 Navigator.pushNamed(context, '/ledgers');
               },
+=======
+>>>>>>> source/main
             )),
             const SizedBox(width: 12),
             Expanded(child: _buildStatCard(
@@ -144,9 +181,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
               iconBgColor: const Color(0xFFFEF3C7),
               label: 'Products',
               value: '2',
+<<<<<<< HEAD
               onTap: () {
                 Navigator.pushNamed(context, '/products');
               },
+=======
+>>>>>>> source/main
             )),
           ],
         ),
@@ -160,9 +200,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
               iconBgColor: const Color(0xFFFEF3C7),
               label: 'Orders',
               value: '5',
+<<<<<<< HEAD
               onTap: () {
                 Navigator.pushNamed(context, '/orders');
               },
+=======
+>>>>>>> source/main
             )),
             const SizedBox(width: 12),
             Expanded(child: _buildStatCard(
@@ -171,9 +214,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
               iconBgColor: const Color(0xFFD1FAE5),
               label: 'Invoices',
               value: '1',
+<<<<<<< HEAD
               onTap: () {
                 Navigator.pushNamed(context, '/invoices');
               },
+=======
+>>>>>>> source/main
             )),
           ],
         ),
@@ -208,6 +254,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     required Color iconBgColor,
     required String label,
     required String value,
+<<<<<<< HEAD
     VoidCallback? onTap,
   }) {
     return InkWell(
@@ -264,6 +311,59 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ],
         ),
+=======
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: iconBgColor,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(icon, color: iconColor, size: 20),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: Colors.grey.shade600,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF1F2937),
+            ),
+          ),
+        ],
+>>>>>>> source/main
       ),
     );
   }
@@ -296,12 +396,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
             icon: Icons.person_add,
             label: 'Add Customer',
             color: const Color(0xFF10B981),
+<<<<<<< HEAD
             onTap: () async {
               final result = await Navigator.pushNamed(context, '/ledgers/add');
               if (result == true && mounted) {
                 Navigator.pushNamed(context, '/ledgers');
               }
             },
+=======
+            onTap: () {},
+>>>>>>> source/main
           ),
         ),
         const SizedBox(width: 12),
@@ -352,6 +456,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
+<<<<<<< HEAD
   Widget _buildDrawer() {
     return Drawer(
       child: Column(
@@ -538,4 +643,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       onTap: onTap,
     );
   }
+=======
+
+>>>>>>> source/main
 }

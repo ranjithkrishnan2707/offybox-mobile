@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import '../../models/order.dart';
 import '../../services/order_service.dart';
 import 'quotation_detail_screen.dart';
+<<<<<<< HEAD
 import 'quotation_form_screen.dart';
+=======
+>>>>>>> source/main
 
 class QuotationListScreen extends StatefulWidget {
   const QuotationListScreen({super.key});
@@ -13,7 +16,10 @@ class QuotationListScreen extends StatefulWidget {
 
 class _QuotationListScreenState extends State<QuotationListScreen> {
   final ScrollController _scrollController = ScrollController();
+<<<<<<< HEAD
   final TextEditingController _searchController = TextEditingController();
+=======
+>>>>>>> source/main
   
   List<Order> _quotations = [];
   bool _isLoading = true;
@@ -21,8 +27,11 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
   bool _hasMore = true;
   int _currentPage = 1;
   String? _error;
+<<<<<<< HEAD
   String _searchQuery = '';
   String _selectedStatus = 'All';
+=======
+>>>>>>> source/main
 
   @override
   void initState() {
@@ -34,7 +43,10 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
   @override
   void dispose() {
     _scrollController.dispose();
+<<<<<<< HEAD
     _searchController.dispose();
+=======
+>>>>>>> source/main
     super.dispose();
   }
 
@@ -56,8 +68,11 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
         page: 1,
         limit: 20,
         orderType: 'QUOTATION',
+<<<<<<< HEAD
         search: _searchQuery,
         orderStatus: _selectedStatus,
+=======
+>>>>>>> source/main
       );
 
       setState(() {
@@ -86,8 +101,11 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
         page: _currentPage + 1,
         limit: 20,
         orderType: 'QUOTATION',
+<<<<<<< HEAD
         search: _searchQuery,
         orderStatus: _selectedStatus,
+=======
+>>>>>>> source/main
       );
 
       setState(() {
@@ -116,6 +134,7 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
+<<<<<<< HEAD
       body: Column(
         children: [
           _buildHeader(),
@@ -238,6 +257,9 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
           ),
         ),
       ),
+=======
+      body: _buildBody(),
+>>>>>>> source/main
     );
   }
 
@@ -312,11 +334,19 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
 
   Widget _buildQuotationCard(Order quotation) {
     return Card(
+<<<<<<< HEAD
       margin: const EdgeInsets.only(bottom: 16),
       elevation: 4,
       shadowColor: Colors.black.withValues(alpha: 0.1),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
+=======
+      margin: const EdgeInsets.only(bottom: 12),
+      elevation: 2,
+      shadowColor: Colors.black.withValues(alpha: 0.08),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+>>>>>>> source/main
       ),
       child: InkWell(
         onTap: () {
@@ -327,12 +357,17 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
             ),
           );
         },
+<<<<<<< HEAD
         borderRadius: BorderRadius.circular(12),
+=======
+        borderRadius: BorderRadius.circular(16),
+>>>>>>> source/main
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+<<<<<<< HEAD
               // Top Section: Party Name and Amount
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -431,6 +466,125 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
                   ),
                   const SizedBox(width: 8),
                   const Icon(Icons.more_vert, color: Colors.black54),
+=======
+              // Header row
+              Row(
+                children: [
+                  // Quotation number
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          quotation.orderNo,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF1F2937),
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          quotation.formattedDate,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // Status badge
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: _getStatusColor(quotation.orderStatus).withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      quotation.orderStatus.toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                        color: _getStatusColor(quotation.orderStatus),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              // Customer and amount
+              Row(
+                children: [
+                  // Customer
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 36,
+                          height: 36,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF7C3AED).withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Center(
+                            child: Text(
+                              quotation.outlet?.companyName.isNotEmpty == true
+                                  ? quotation.outlet!.companyName[0].toUpperCase()
+                                  : '?',
+                              style: const TextStyle(
+                                color: Color(0xFF7C3AED),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                quotation.outlet?.companyName ?? 'Unknown',
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(0xFF374151),
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                '${quotation.itemCount} item${quotation.itemCount != 1 ? 's' : ''}',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey.shade600,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // Amount
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        quotation.formattedTotalAmount,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF7C3AED),
+                        ),
+                      ),
+                    ],
+                  ),
+>>>>>>> source/main
                 ],
               ),
             ],

@@ -3,7 +3,11 @@ import 'package:http/http.dart' as http;
 import 'storage_service.dart';
 
 class AuthService {
+<<<<<<< HEAD
   static const String _baseUrl = 'https://api.offybox.com';
+=======
+  static const String _baseUrl = 'https://api.offybox.com/v1';
+>>>>>>> source/main
 
   /// Convert subdomain to tenant_code format
   /// e.g., "demo" -> "ORG-DEMO"
@@ -16,7 +20,11 @@ class AuthService {
     required String email,
     required String password,
   }) async {
+<<<<<<< HEAD
     final url = '$_baseUrl/v1/auth/login';
+=======
+    final url = '$_baseUrl/auth/login';
+>>>>>>> source/main
     final tenantCode = _subdomainToTenantCode(subdomain);
     
     try {
