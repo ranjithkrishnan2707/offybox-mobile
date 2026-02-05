@@ -11,11 +11,7 @@ class Outlet {
   final String? gstn;
   final String? outletCategoryId;
   final String? salesPersonId;
-<<<<<<< HEAD
   final LedgerGroup? outletCategory;
-=======
-  final OutletCategory? outletCategory;
->>>>>>> source/main
   final SalesPerson? salesPerson;
   final DateTime? createdAt;
   final DateTime? updatedAt;
@@ -54,21 +50,15 @@ class Outlet {
   });
 
   factory Outlet.fromJson(Map<String, dynamic> json) {
-<<<<<<< HEAD
     // Try to find the ID from various common fields
     final id = (json['id'] ?? json['_id'] ?? json['uuid'])?.toString() ?? '';
     
     return Outlet(
       id: id,
-=======
-    return Outlet(
-      id: json['id'] ?? '',
->>>>>>> source/main
       companyName: json['company_name'] ?? '',
       email: json['email'],
       phone: json['phone'],
       mobile: json['mobile'],
-<<<<<<< HEAD
       creditLimit: json['credit_limit']?.toString() ?? '0',
       outstanding: json['outstanding']?.toString() ?? '0',
       outletType: json['outlet_type'],
@@ -78,17 +68,6 @@ class Outlet {
       salesPersonId: json['sales_person_id']?.toString(),
       outletCategory: json['outlet_category'] != null
           ? LedgerGroup.fromJson(json['outlet_category'])
-=======
-      creditLimit: json['credit_limit'] ?? '0',
-      outstanding: json['outstanding'] ?? '0',
-      outletType: json['outlet_type'],
-      status: json['status'] ?? '',
-      gstn: json['gstn'],
-      outletCategoryId: json['outlet_category_id'],
-      salesPersonId: json['sales_person_id'],
-      outletCategory: json['outlet_category'] != null
-          ? OutletCategory.fromJson(json['outlet_category'])
->>>>>>> source/main
           : null,
       salesPerson: json['sales_person'] != null
           ? SalesPerson.fromJson(json['sales_person'])
@@ -99,13 +78,8 @@ class Outlet {
       updatedAt: json['updated_at'] != null
           ? DateTime.tryParse(json['updated_at'])
           : null,
-<<<<<<< HEAD
       // Addresses array (trying both 'addresses' and 'outlet_addresses')
       addresses: ((json['addresses'] ?? json['outlet_addresses']) as List<dynamic>?)
-=======
-      // Addresses array
-      addresses: (json['addresses'] as List<dynamic>?)
->>>>>>> source/main
               ?.map((e) => OutletAddress.fromJson(e))
               .toList() ??
           [],
@@ -141,7 +115,6 @@ class Outlet {
       (contactPersonName != null && contactPersonName!.isNotEmpty) ||
       (contactPersonPhone != null && contactPersonPhone!.isNotEmpty) ||
       (contactPersonEmail != null && contactPersonEmail!.isNotEmpty);
-<<<<<<< HEAD
 
   @override
   bool operator ==(Object other) =>
@@ -150,8 +123,6 @@ class Outlet {
 
   @override
   int get hashCode => id.hashCode;
-=======
->>>>>>> source/main
 }
 
 class OutletAddress {
@@ -181,7 +152,6 @@ class OutletAddress {
 
   factory OutletAddress.fromJson(Map<String, dynamic> json) {
     return OutletAddress(
-<<<<<<< HEAD
       id: json['id']?.toString() ?? '',
       type: json['type']?.toString() ?? '',
       name: json['name']?.toString(),
@@ -192,18 +162,6 @@ class OutletAddress {
       stateId: json['state_id']?.toString(),
       cityId: json['city_id']?.toString(),
       status: json['status']?.toString() ?? '',
-=======
-      id: json['id'] ?? '',
-      type: json['type'] ?? '',
-      name: json['name'],
-      address1: json['address1'],
-      address2: json['address2'],
-      pincode: json['pincode'],
-      countryId: json['country_id'],
-      stateId: json['state_id'],
-      cityId: json['city_id'],
-      status: json['status'] ?? '',
->>>>>>> source/main
     );
   }
 
@@ -216,7 +174,6 @@ class OutletAddress {
   }
 
   bool get hasAddress => fullAddress.isNotEmpty;
-<<<<<<< HEAD
 
   @override
   bool operator ==(Object other) =>
@@ -228,34 +185,19 @@ class OutletAddress {
 }
 
 class LedgerGroup {
-=======
-}
-
-class OutletCategory {
->>>>>>> source/main
   final String id;
   final String name;
   final String status;
 
-<<<<<<< HEAD
   LedgerGroup({
-=======
-  OutletCategory({
->>>>>>> source/main
     required this.id,
     required this.name,
     required this.status,
   });
 
-<<<<<<< HEAD
   factory LedgerGroup.fromJson(Map<String, dynamic> json) {
     return LedgerGroup(
       id: json['id']?.toString() ?? '',
-=======
-  factory OutletCategory.fromJson(Map<String, dynamic> json) {
-    return OutletCategory(
-      id: json['id'] ?? '',
->>>>>>> source/main
       name: json['name'] ?? '',
       status: json['status'] ?? '',
     );
@@ -281,28 +223,18 @@ class SalesPerson {
 
   factory SalesPerson.fromJson(Map<String, dynamic> json) {
     return SalesPerson(
-<<<<<<< HEAD
       id: json['id']?.toString() ?? '',
       firstName: json['first_name'] ?? '',
       lastName: json['last_name'] ?? '',
       email: json['email'] ?? '',
       phone: json['phone']?.toString(),
       code: json['code']?.toString() ?? '',
-=======
-      id: json['id'] ?? '',
-      firstName: json['first_name'] ?? '',
-      lastName: json['last_name'] ?? '',
-      email: json['email'] ?? '',
-      phone: json['phone'],
-      code: json['code'] ?? '',
->>>>>>> source/main
     );
   }
 
   String get fullName => '$firstName $lastName';
 }
 
-<<<<<<< HEAD
 class LookupItem {
   final String id;
   final String name;
@@ -320,8 +252,6 @@ class LookupItem {
   }
 }
 
-=======
->>>>>>> source/main
 class OutletListResponse {
   final List<Outlet> data;
   final int page;

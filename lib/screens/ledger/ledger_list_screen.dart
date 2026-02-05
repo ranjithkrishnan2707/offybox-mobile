@@ -5,6 +5,8 @@ import '../../services/auth_service.dart';
 import '../../models/outlet.dart';
 import '../../services/outlet_service.dart';
 import '../outlet/outlet_detail_screen.dart';
+import '../../widgets/app_sidebar.dart';
+
 
 class LedgerListScreen extends StatefulWidget {
   const LedgerListScreen({super.key});
@@ -154,7 +156,46 @@ class _LedgerListScreenState extends State<LedgerListScreen> {
           ),
         ],
       ),
-      drawer: _buildDrawer(),
+      drawer: AppSidebar(
+        activeItem: 'Ledger',
+        userName: _userName,
+        userEmail: _userEmail,
+        tenantName: _tenantName,
+        onItemTap: (id) {
+          Navigator.pop(context);
+          switch (id) {
+            case 'Dashboard':
+              Navigator.pushReplacementNamed(context, '/dashboard');
+              break;
+            case 'Users':
+              Navigator.pushReplacementNamed(context, '/home');
+              break;
+            case 'Ledger':
+              // Already on Ledgers
+              break;
+            case 'Orders':
+              Navigator.pushNamed(context, '/orders');
+              break;
+            case 'Products':
+              Navigator.pushNamed(context, '/products');
+              break;
+            case 'Invoice':
+              Navigator.pushNamed(context, '/invoices');
+              break;
+            case 'Payments':
+              Navigator.pushNamed(context, '/payments');
+              break;
+            case 'Settings':
+              // Logic for settings if any
+              break;
+          }
+        },
+        onLogout: () {
+          Navigator.pop(context);
+          _handleLogout();
+        },
+      ),
+
       body: Column(
         children: [
           _buildHeader(),
@@ -490,177 +531,6 @@ class _LedgerListScreenState extends State<LedgerListScreen> {
   }
 
 
-  Widget _buildDrawer() {
-    return Drawer(
-      child: Column(
-        children: [
-          // Header
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.only(
-              top: MediaQuery.of(context).padding.top + 24,
-              bottom: 24,
-              left: 20,
-              right: 20,
-            ),
-            decoration: const BoxDecoration(
-              color: Color(0xFF7C3AED),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Logo
-                Image.asset(
-                  'assets/images/logo.png',
-                  width: 120,
-                  height: 40,
-                  fit: BoxFit.contain,
-                  color: Colors.white,
-                  colorBlendMode: BlendMode.srcIn,
-                ),
-                const SizedBox(height: 20),
-                // Tenant name
-                Text(
-                  _tenantName,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                // User info
-                Text(
-                  _userName,
-                  style: const TextStyle(
-                    color: Colors.white70,
-                    fontSize: 14,
-                  ),
-                ),
-                Text(
-                  _userEmail,
-                  style: const TextStyle(
-                    color: Colors.white60,
-                    fontSize: 12,
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          // Menu items
-          Expanded(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                _buildDrawerItem(
-                  icon: Icons.dashboard,
-                  title: 'Dashboard',
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, '/dashboard');
-                  },
-                ),
-                _buildDrawerItem(
-                  icon: Icons.store,
-                  title: 'Outlets',
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, '/home');
-                  },
-                ),
-                _buildDrawerItem(
-                  icon: Icons.account_balance_wallet,
-                  title: 'Ledgers',
-                  selected: true,
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                _buildDrawerItem(
-                  icon: Icons.shopping_cart,
-                  title: 'Orders',
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                _buildDrawerItem(
-                  icon: Icons.inventory,
-                  title: 'Products',
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                _buildDrawerItem(
-                  icon: Icons.receipt_long,
-                  title: 'Invoices',
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                _buildDrawerItem(
-                  icon: Icons.payments,
-                  title: 'Payments',
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                const Divider(),
-                _buildDrawerItem(
-                  icon: Icons.settings,
-                  title: 'Settings',
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
-            ),
-          ),
-
-          // Logout
-          Container(
-            decoration: BoxDecoration(
-              border: Border(top: BorderSide(color: Colors.grey.shade200)),
-            ),
-            child: _buildDrawerItem(
-              icon: Icons.logout,
-              title: 'Logout',
-              textColor: Colors.red,
-              onTap: () {
-                Navigator.pop(context);
-                _handleLogout();
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDrawerItem({
-    required IconData icon,
-    required String title,
-    bool selected = false,
-    Color? textColor,
-    required VoidCallback onTap,
-  }) {
-    return ListTile(
-      leading: Icon(
-        icon,
-        color: selected ? const Color(0xFF7C3AED) : textColor ?? Colors.grey.shade700,
-      ),
-      title: Text(
-        title,
-        style: TextStyle(
-          color: selected ? const Color(0xFF7C3AED) : textColor ?? Colors.grey.shade800,
-          fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
-        ),
-      ),
-      selected: selected,
-      selectedTileColor: const Color(0xFF7C3AED).withValues(alpha: 0.1),
-      onTap: onTap,
-    );
-  }
 
   Future<void> _handleLogout() async {
     await AuthService.logout();

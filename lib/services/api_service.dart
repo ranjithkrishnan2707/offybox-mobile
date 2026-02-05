@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import 'storage_service.dart';
 
 class ApiService {
-<<<<<<< HEAD
   static const String _baseUrl = 'https://api.offybox.com';
 
   static const String ENDPOINT_OUTLETS = '/v1/outlet';
@@ -18,9 +17,6 @@ class ApiService {
   static const String ENDPOINT_BRANDS = '/v1/brands';
   static const String ENDPOINT_UNITS = '/v1/units';
   static const String ENDPOINT_TAXES = '/v1/taxes';
-=======
-  static const String _baseUrl = 'https://api.offybox.com/v1';
->>>>>>> source/main
 
   static Future<Map<String, String>> _getHeaders() async {
     final token = await StorageService.getToken();
@@ -34,7 +30,6 @@ class ApiService {
     try {
       final uri = Uri.parse('$_baseUrl$endpoint').replace(queryParameters: queryParams);
       final headers = await _getHeaders();
-<<<<<<< HEAD
       print('ApiService GET: $uri');
       
       final response = await http.get(uri, headers: headers);
@@ -53,11 +48,6 @@ class ApiService {
       }
       
       print('ApiService Data: $data');
-=======
-      
-      final response = await http.get(uri, headers: headers);
-      final data = jsonDecode(response.body);
->>>>>>> source/main
 
       if (response.statusCode == 200) {
         return {
@@ -75,11 +65,7 @@ class ApiService {
       } else {
         return {
           'success': false,
-<<<<<<< HEAD
           'message': data is Map ? (data['message'] ?? data['error'] ?? 'Request failed') : 'Request failed',
-=======
-          'message': data['message'] ?? data['error'] ?? 'Request failed',
->>>>>>> source/main
         };
       }
     } catch (e) {
@@ -100,7 +86,6 @@ class ApiService {
         headers: headers,
         body: jsonEncode(body),
       );
-<<<<<<< HEAD
       
       dynamic data;
       try {
@@ -113,9 +98,6 @@ class ApiService {
           'body': response.body,
         };
       }
-=======
-      final data = jsonDecode(response.body);
->>>>>>> source/main
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         return {
@@ -132,11 +114,7 @@ class ApiService {
       } else {
         return {
           'success': false,
-<<<<<<< HEAD
           'message': data is Map ? (data['message'] ?? data['error'] ?? 'Request failed') : 'Request failed',
-=======
-          'message': data['message'] ?? data['error'] ?? 'Request failed',
->>>>>>> source/main
         };
       }
     } catch (e) {

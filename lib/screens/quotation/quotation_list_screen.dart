@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import '../../models/order.dart';
 import '../../services/order_service.dart';
 import 'quotation_detail_screen.dart';
-<<<<<<< HEAD
 import 'quotation_form_screen.dart';
-=======
->>>>>>> source/main
 
 class QuotationListScreen extends StatefulWidget {
   const QuotationListScreen({super.key});
@@ -16,10 +13,7 @@ class QuotationListScreen extends StatefulWidget {
 
 class _QuotationListScreenState extends State<QuotationListScreen> {
   final ScrollController _scrollController = ScrollController();
-<<<<<<< HEAD
   final TextEditingController _searchController = TextEditingController();
-=======
->>>>>>> source/main
   
   List<Order> _quotations = [];
   bool _isLoading = true;
@@ -27,11 +21,8 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
   bool _hasMore = true;
   int _currentPage = 1;
   String? _error;
-<<<<<<< HEAD
   String _searchQuery = '';
   String _selectedStatus = 'All';
-=======
->>>>>>> source/main
 
   @override
   void initState() {
@@ -43,10 +34,7 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
   @override
   void dispose() {
     _scrollController.dispose();
-<<<<<<< HEAD
     _searchController.dispose();
-=======
->>>>>>> source/main
     super.dispose();
   }
 
@@ -68,11 +56,8 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
         page: 1,
         limit: 20,
         orderType: 'QUOTATION',
-<<<<<<< HEAD
         search: _searchQuery,
         orderStatus: _selectedStatus,
-=======
->>>>>>> source/main
       );
 
       setState(() {
@@ -101,11 +86,8 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
         page: _currentPage + 1,
         limit: 20,
         orderType: 'QUOTATION',
-<<<<<<< HEAD
         search: _searchQuery,
         orderStatus: _selectedStatus,
-=======
->>>>>>> source/main
       );
 
       setState(() {
@@ -134,7 +116,6 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
-<<<<<<< HEAD
       body: Column(
         children: [
           _buildHeader(),
@@ -166,7 +147,7 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
 
   Widget _buildHeader() {
     return Container(
-      color: const Color(0xFF7C3AED), // Reverted to purple
+      color: const Color(0xFF7C3AED),
       padding: const EdgeInsets.only(bottom: 16),
       child: Column(
         children: [
@@ -180,7 +161,7 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.1),
+                    color: Colors.black.withOpacity(0.1),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),
@@ -257,9 +238,6 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
           ),
         ),
       ),
-=======
-      body: _buildBody(),
->>>>>>> source/main
     );
   }
 
@@ -334,19 +312,11 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
 
   Widget _buildQuotationCard(Order quotation) {
     return Card(
-<<<<<<< HEAD
-      margin: const EdgeInsets.only(bottom: 16),
-      elevation: 4,
-      shadowColor: Colors.black.withValues(alpha: 0.1),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-=======
       margin: const EdgeInsets.only(bottom: 12),
       elevation: 2,
-      shadowColor: Colors.black.withValues(alpha: 0.08),
+      shadowColor: Colors.black.withOpacity(0.08),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
->>>>>>> source/main
       ),
       child: InkWell(
         onTap: () {
@@ -357,116 +327,12 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
             ),
           );
         },
-<<<<<<< HEAD
-        borderRadius: BorderRadius.circular(12),
-=======
         borderRadius: BorderRadius.circular(16),
->>>>>>> source/main
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-<<<<<<< HEAD
-              // Top Section: Party Name and Amount
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Text(
-                      quotation.outlet?.companyName ?? 'Unknown Party',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  Text(
-                    '₹ ${(double.tryParse(quotation.totalAmount) ?? 0).toStringAsFixed(2)}',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF7C3AED),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              // Quotation Number and Status Dropdown
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    quotation.orderNo,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black54,
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF7C3AED).withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: const Color(0xFF7C3AED).withValues(alpha: 0.3)),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          quotation.orderStatus,
-                          style: const TextStyle(
-                            color: Color(0xFF7C3AED),
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        const Icon(Icons.keyboard_arrow_down, size: 20, color: Color(0xFF7C3AED)),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 4),
-              // Date
-              Text(
-                quotation.formattedDate,
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey,
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 12),
-                child: Divider(height: 1),
-              ),
-              // Bottom Section: Actions
-              Row(
-                children: [
-                  const Icon(Icons.swap_horiz, size: 20, color: Color(0xFF7C3AED)),
-                  const SizedBox(width: 8),
-                  const Text(
-                    'Convert To Invoice',
-                    style: TextStyle(
-                      color: Color(0xFF7C3AED),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const Spacer(),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(Icons.chat, size: 20, color: Colors.green),
-                  ),
-                  const SizedBox(width: 8),
-                  const Icon(Icons.more_vert, color: Colors.black54),
-=======
               // Header row
               Row(
                 children: [
@@ -501,7 +367,7 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: _getStatusColor(quotation.orderStatus).withValues(alpha: 0.1),
+                      color: _getStatusColor(quotation.orderStatus).withOpacity(0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
@@ -527,7 +393,7 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
                           width: 36,
                           height: 36,
                           decoration: BoxDecoration(
-                            color: const Color(0xFF7C3AED).withValues(alpha: 0.1),
+                            color: const Color(0xFF7C3AED).withOpacity(0.1),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Center(
@@ -584,7 +450,6 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
                       ),
                     ],
                   ),
->>>>>>> source/main
                 ],
               ),
             ],
@@ -600,6 +465,7 @@ class _QuotationListScreenState extends State<QuotationListScreen> {
         return Colors.orange;
       case 'confirmed':
       case 'approved':
+      case 'accepted':
         return Colors.green;
       case 'cancelled':
       case 'rejected':

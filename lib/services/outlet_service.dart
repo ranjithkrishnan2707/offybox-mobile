@@ -16,11 +16,7 @@ class OutletService {
       queryParams['search'] = search;
     }
 
-<<<<<<< HEAD
     final result = await ApiService.get(ApiService.ENDPOINT_OUTLETS, queryParams: queryParams);
-=======
-    final result = await ApiService.get('/outlet', queryParams: queryParams);
->>>>>>> source/main
 
     if (result['success']) {
       final response = OutletListResponse.fromJson(result['data']);
@@ -34,7 +30,6 @@ class OutletService {
   }
 
   static Future<Map<String, dynamic>> getOutletById(String id) async {
-<<<<<<< HEAD
     final result = await ApiService.get('${ApiService.ENDPOINT_OUTLETS}/$id');
 
     if (result['success']) {
@@ -48,18 +43,11 @@ class OutletService {
           
       final outlet = Outlet.fromJson(outletMap);
       print('OutletService.getOutletById PARSED ADDRESSES: ${outlet.addresses.length}'); // DEBUG LOG
-=======
-    final result = await ApiService.get('/outlet/$id');
-
-    if (result['success']) {
-      final outlet = Outlet.fromJson(result['data']);
->>>>>>> source/main
       return {
         'success': true,
         'data': outlet,
       };
     }
-<<<<<<< HEAD
     
     // If singular 404s, try plural as a fallback - common REST inconsistency
     if (result['message'].toString().contains('404')) {
@@ -163,8 +151,6 @@ class OutletService {
         'data': items,
       };
     }
-=======
->>>>>>> source/main
 
     return result;
   }
